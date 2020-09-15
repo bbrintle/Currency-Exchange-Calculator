@@ -1,0 +1,8 @@
+https://stripe.com/docs/api
+https://stripe.com/docs/js
+
+<script src="https://js.stripe.com/v3/"></script>
+
+Stripe API Key: pk_test_51HQfxcDWSmRspLnGbJM5WqgCwfcWNZg2Bth5BOYVI5YvhTdyKvOOBi1zZ9HYMybbQll3SwDmD2Ek354FK4aT6UDG00ZJ9a5b1u
+
+npm install --save stripe
