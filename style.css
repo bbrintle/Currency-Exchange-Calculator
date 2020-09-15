@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #c0c0c0;
+  color: #fff;
+}
+.container {
+  width: 500px;
+  margin: 20px auto;
+}
+.header {
+  background-color: #6699CC;
+  text-align: center;
+  padding: 25px;
+}
+h1 {
+  font-size: 30pt; 
+}
+.date {
+  background-color: #333333;
+  text-align: right;
+  font-size: 15pt;
+  padding: 15px;
+}
+ul.currency {
+  height: 500px;
+  background-color: #333333;
+  padding: 15px;
+}
+ul.currency li {
+  background-color: #c0c0c0;
+  border-radius: 5px;
+  list-style: none;
+  padding: 20px;
+
+}
+.flag {
+  width: 60px;
+  height: 40px;
+  border: 1px solid white;
+  vertical-align: top;
+}
+.info {
+  display: inline-block;
+} 
+.add-country-btn {
+  background-color: #6699CC;
+  color: white;
+  padding: 20px;
+  font-size: 20pt;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  width: 500px;
+}
+button:hover {
+ background-color:#1167b1;
+}
