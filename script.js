@@ -5,18 +5,22 @@ window.onload = function(){
     day.innerHTML = now;
 }
 
-//link to api
-//https://v6.exchangerate-api.com/v6/e0620196d78ecdae02db1048/latest/ + userInput
+//function
+function conversion(){   
+var currency = document.getElementById("currencyName").value;
 
-//API KEY
-//e0620196d78ecdae02db1048
+var urlQuery = "https://v6.exchangerate-api.com/v6/0447b7806aa3c6c9ff66b0a6/latest/" + ;
+// var amountToConvernt = document.getElementById("amount");
+// var base = conversion.Rates;
+//var  = document.getElementbyID("Country code ");
 
-//api request
-$.ajax({
-    URL:"https://cors-anywhere.herokuapp.com/https://v6.exchangerate-api.com/v6/0447b7806aa3c6c9ff66b0a6/latest/USD",
-    method: "GET"
-}).then(function(response){
-    console.log(response)
-});
+// console.log(urlQuery)
+//api
+// $.ajax({
+//     url: urlQuery,
+//     method: "GET"
+// }).then(function(response){
+//     console.log(response)
+// });
 
-
+}

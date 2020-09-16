@@ -7,9 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="assets/style.css">
     <title>Currency Converter</title>
-   
 </head>
-
 <body>
 
     <div class="container">
@@ -19,18 +17,38 @@
     <div>
         <p id="currentDay"></p>
     </div>
+    <!--Base Curremcy - USD -->
         <ul class="currency">
             <li class="usd-default" id="USD">
                 <img src="assets/USD.png" class="flag">
                 <div class="info">
                     <div class="currencyInput">
                         <span class="currency-symbol">&#36;</span>
-                        <input type="number">
+                        <input id="amount" type="number">
                     </div>
                 </div>
-                </p>
                 <p class="currency-name">USD - US Dollar</p>
-                <p class="base-currency-rate">1 USD = 1 USD</p>
+                <p class="base-currency-rate"></p>
+            </li>
+        </ul>
+    <!--Drop Down Label-->
+    <label>Select the Currency you would like to convert your money into</label>
+    <select id="CurrencyName">
+        <option value="MXN">Mexican</option>
+        <option>Europeon</option>
+        <option>Pakistan Rupee</option>
+    </select>
+        <!--Country wanting to convert to-->
+        <ul class="currency">
+            <li class="foreignEx" id="foreign">
+                <div class="info">
+                    <div class="currencyInput">
+                        <input id="amount" type="number">
+                    </div>
+                </div>
+            </p>
+            <p class="currency-name"></p>
+            <p class="base-currency-rate"></p>
             </li>
         </ul>
         <button class="add-country-btn">Add Country Exchange Rate</button>
