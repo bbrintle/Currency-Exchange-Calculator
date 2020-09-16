@@ -6,21 +6,35 @@ window.onload = function(){
 }
 
 //function
-function conversion(){   
+function setCurrencies(){   
 var currency = document.getElementById("currencyName").value;
+//set a var to get the select options values 
+//set currency you want to convert to
+var urlQuery = "https://v6.exchangerate-api.com/v6/0447b7806aa3c6c9ff66b0a6/latest/" + currency;
+var amountToConvernt = document.getElementById("amount");
 
-var urlQuery = "https://v6.exchangerate-api.com/v6/0447b7806aa3c6c9ff66b0a6/latest/" + ;
-// var amountToConvernt = document.getElementById("amount");
-// var base = conversion.Rates;
-//var  = document.getElementbyID("Country code ");
 
-// console.log(urlQuery)
+// set base = usd
+
+
+
+
 //api
-// $.ajax({
-//     url: urlQuery,
-//     method: "GET"
-// }).then(function(response){
-//     console.log(response)
-// });
+console.log(urlQuery)
+api
+$.ajax({
+    url: urlQuery,
+    method: "GET"
+}).then(function(response){
+    console.log(response)
+});
 
+}
+
+
+//convert to wanted currencies
+
+function convert(base, currency){
+    amountConverted = base * currency
+    
 }
