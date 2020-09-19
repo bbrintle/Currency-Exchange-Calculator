@@ -67,3 +67,11 @@ button:hover {
 #default-currency-picker{
   margin-top: 10px;
 }
+
+img{
+  width: 60px;
+  height: 40px;
+  border: 1px solid white;
+  vertical-align: top;
+}
+

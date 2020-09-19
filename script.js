@@ -199,10 +199,11 @@ function setDefaultFlag(){
     defaultFlag.setAttribute('src', currencyDefault + ".png");
 };
 
+//foreign currency api
 function pullAPI(defaultCurrency){
     //api request
     console.log(defaultCurrency);
-    var myURL = "https://v6.exchangerate-api.com/v6/e0620196d78ecdae02db1048/latest/" + defaultCurrency;
+    var myURL = "https://v6.exchangerate-api.com/v6/0447b7806aa3c6c9ff66b0a6/latest/" + defaultCurrency;
     console.log(myURL);
     $.ajax({
         url: myURL,
@@ -214,6 +215,52 @@ function pullAPI(defaultCurrency){
 
     });
 }
+
+//Crypto Currency API
+
+function cryptoAPI(){
+    //api request
+    var cryptoURL = "https://api.coingecko.com/api/v3/coins/list";
+    $.ajax({
+        url: cryptoURL,
+        method: "GET"
+        }).then(function(response) {
+            console.log(response);
+    
+            $("<option>").val("bitcoin")
+            $("<option>").val("ethereum")
+            $("<option>").val("tether")
+            $("<option>").val("ripple")
+            $("<option>").val("polkadot")
+            $("<option>").val("bitcoin-cash")
+            $("<option>").val("binancecoin")
+            $("<option>").val("chainlink")
+            $("<option>").val("crypto-com-chain")
+            $("<option>").val("litecoin")
+
+
+    });
+}
+cryptoAPI();
+
+var exchange_id = ""
+$("#crypto").change(function() {
+    exchange_id = $(this).children(":selected").attr("id");
+});
+
+function cryptoConversion(){
+    let base = $('#default-crypto-picker').val()
+    let exchange = exchange_id
+    $.ajax({
+        url: `https://api.coingecko.com/api/v3/simple/price?ids=${base}&vs_currencies=${exchange}`,
+        method: "GET"
+        }).then(function(response) {
+            console.log(response);
+    })
+}
+
+cryptoConversion()
+
 
 selectMainCurrenyElement.addEventListener("change", function(){
     setDefaultFlag();
