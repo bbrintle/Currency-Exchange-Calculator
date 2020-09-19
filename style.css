@@ -26,17 +26,17 @@ h1 {
   font-size: 15pt;
   padding: 15px;
 }
-ul.currency {
+.currency {
   height: 500px;
   background-color: #333333;
   padding: 15px;
 }
-ul.currency li {
+.default-box, .currency-box {
   background-color: #c0c0c0;
   border-radius: 5px;
   list-style: none;
   padding: 20px;
-
+  margin-bottom: 10px; /******/
 }
 .flag {
   width: 60px;
@@ -47,7 +47,7 @@ ul.currency li {
 .info {
   display: inline-block;
 } 
-.add-country-btn {
+#add-currency-btn {
   background-color: #6699CC;
   color: white;
   padding: 20px;
@@ -59,4 +59,11 @@ ul.currency li {
 }
 button:hover {
  background-color:#1167b1;
+}
+
+.currency-picker-container {
+  margin-bottom: 10px;
+}
+#default-currency-picker{
+  margin-top: 10px;
 }
