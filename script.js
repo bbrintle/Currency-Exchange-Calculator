@@ -4,63 +4,20 @@ window.onload = function(){
     day.textContent = moment().format("MMMM Do YYYY");
 }
 
+//Assign our global variables
 var amountToConvert = 0;
 var combinedAmount = 0;
+var usedCurrencyArray = ["USD"];
 
-//create a few variables that get the Elements we need to collect our values
+//Create a few variables that get the Elements we need to collect our values
 var totalAmountElement = document.getElementById("total-amount");
 var amountInput = document.getElementById("amount");
 var selectCurrencyElement = document.getElementById('currency-picker');
 var selectMainCurrenyElement = document.getElementById("default-currency-picker");
 var defaultFlag = document.getElementById("default-flag");
 var refreshBtn = document.getElementById("refresh");
-
-
-//***********************************************************/
-//collect the button element and create an on click event listner
 var mainDisplayDiv = document.querySelector(".currency");
 var addCurrencyBtn = document.getElementById("add-currency-btn");
-var usedCurrencyArray = ["USD"];
-
-
-//Button that adds an additional currency box based on the currently selected dropdown
-addCurrencyBtn.addEventListener('click', function(){
-    var selectedCurrency = getSelectedCurrenyFromDropdown(selectCurrencyElement).value;
-    
-    if(usedCurrencyArray.indexOf(selectedCurrency) === -1){
-        var newCurrencyContainer = document.createElement("div");
-        var cancelBtn = document.createElement("button");
-
-        cancelBtn.textContent = "X";
-        cancelBtn.setAttribute("class", "cancel-button");
-        cancelBtn.addEventListener('click', function(){
-            newCurrencyContainer.remove();
-            usedCurrencyArray.splice(usedCurrencyArray.indexOf(selectedCurrency), 1);
-        });
-    
-        var newFlagImg = document.createElement('img');
-        newFlagImg.setAttribute("src", chooseCorrectFlag(selectedCurrency))
-        newFlagImg.setAttribute('class', "flag");
-
-        var newCurrencyInput = document.createElement("input");
-        newCurrencyInput.setAttribute('type', "number");
-        newCurrencyInput.setAttribute('id', selectedCurrency + "-input");
-        newCurrencyInput.setAttribute('value', '0.00');
-
-        var newCurrencyName = document.createElement("p");
-        newCurrencyName.setAttribute('id', selectedCurrency + "-p");
-        newCurrencyName.textContent = selectedCurrency;
-
-        newCurrencyContainer.setAttribute("class", "currency-box");
-        newCurrencyContainer.appendChild(newFlagImg);
-        newCurrencyContainer.appendChild(newCurrencyInput);
-        newCurrencyContainer.appendChild(cancelBtn);
-        newCurrencyContainer.appendChild(newCurrencyName);
-        mainDisplayDiv.appendChild(newCurrencyContainer);
-
-        usedCurrencyArray.push(selectedCurrency);
-    };
-});
 
 //Function that will change all of the prices based on exchange rate in each of the currency boxes
 function updateExchangePrice(API){
@@ -75,7 +32,8 @@ function updateExchangePrice(API){
         var totalAmountNeeded = amountInput.value - combinedAmount;
     };
 
-    if(!totalAmountNeeded){} //do nothing
+    //Check if the totalAmountNeeded is negative, positive, or undefined
+    if(!totalAmountNeeded){} //do nothing if totalAmountNeeded is undefined
     else if(totalAmountNeeded < 0){
         newAmount = totalAmountNeeded * -1;
         totalAmountElement.textContent = "Keep saving! You need " + newAmount.toFixed(2) + " until you have reached your goal!";
@@ -104,7 +62,6 @@ function setFlag(){
 
 //Function that pulls the API for the provided currencyID
 function pullAPI(defaultCurrency){
-    //api request
     var myURL = "https://v6.exchangerate-api.com/v6/0447b7806aa3c6c9ff66b0a6/latest/" + defaultCurrency;
     $.ajax({
         url: myURL,
@@ -152,11 +109,53 @@ function pullAPI(defaultCurrency){
 //     })
 // };
 
+//Button that adds an additional currency box based on the currently selected dropdown
+addCurrencyBtn.addEventListener('click', function(){
+    var selectedCurrency = getSelectedCurrenyFromDropdown(selectCurrencyElement).value;
+    
+    if(usedCurrencyArray.indexOf(selectedCurrency) === -1){
+        //Cancel Button Creation
+        var cancelBtn = document.createElement("button");
+        cancelBtn.textContent = "X";
+        cancelBtn.setAttribute("class", "cancel-button");
+        cancelBtn.addEventListener('click', function(){
+            newCurrencyContainer.remove();
+            usedCurrencyArray.splice(usedCurrencyArray.indexOf(selectedCurrency), 1);
+        });
+        //Flag Image Creation
+        var newFlagImg = document.createElement('img');
+        newFlagImg.setAttribute("src", chooseCorrectFlag(selectedCurrency))
+        newFlagImg.setAttribute('class', "flag");
+        //User Input Creation
+        var newCurrencyInput = document.createElement("input");
+        newCurrencyInput.setAttribute('type', "number");
+        newCurrencyInput.setAttribute('id', selectedCurrency + "-input");
+        newCurrencyInput.setAttribute('value', '0.00');
+        //Currency Name Lable Creation
+        var newCurrencyName = document.createElement("p");
+        newCurrencyName.setAttribute('id', selectedCurrency + "-p");
+        newCurrencyName.textContent = selectedCurrency;
+        //Create the Div that all the above info will be shoved inside of
+        var newCurrencyContainer = document.createElement("div");
+        newCurrencyContainer.setAttribute("class", "currency-box");
+        newCurrencyContainer.appendChild(newFlagImg);
+        newCurrencyContainer.appendChild(newCurrencyInput);
+        newCurrencyContainer.appendChild(cancelBtn);
+        newCurrencyContainer.appendChild(newCurrencyName);
+        //Append the Div above to mainDisplayDiv
+        mainDisplayDiv.appendChild(newCurrencyContainer);
+        //Add the ID to the array so that it cannot be used again
+        usedCurrencyArray.push(selectedCurrency);
+    };
+});
+
+//This will run when the refreshBtn is clicked
 refreshBtn.addEventListener('click', function(){
     combinedAmount = 0;
     updateExchangePrice(pullAPI(getSelectedCurrenyFromDropdown(selectMainCurrenyElement).value));
 });
 
+//When the Main Option within the Select is selected, this will run
 selectMainCurrenyElement.addEventListener("change", function(){
     setFlag();
     pullAPI(getSelectedCurrenyFromDropdown(selectMainCurrenyElement).value);
