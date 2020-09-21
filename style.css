@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #c0c0c0;
+  color: #fff;
+}
+.container {
+  width: 500px;
+  margin: 20px auto;
+}
+.header {
+  background-color: #6699CC;
+  text-align: center;
+  padding: 25px;
+}
+h1 {
+  font-size: 30pt; 
+}
+#total-amount{
+  background-color: #333333;
+  text-align: center;
+  font-size: 25pt;
+  padding: 15px;
+}
+.date {
+  background-color: #333333;
+  text-align: right;
+  font-size: 15pt;
+  padding: 15px;
+}
+.currency {
+  background-color: #333333;
+  padding: 15px;
+}
+.default-box, .currency-box {
+  background-color: #c0c0c0;
+  border-radius: 5px;
+  list-style: none;
+  padding: 20px;
+  margin-bottom: 10px;
+  color: black;
+}
+.flag {
+  width: 60px;
+  height: 40px;
+  vertical-align: top;
+}
+.info {
+  display: inline-block;
+} 
+#add-currency-btn {
+  background-color: #6699CC;
+  color: white;
+  padding: 20px;
+  font-size: 20pt;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  width: 500px;
+}
+#add-currency-btn:hover {
+ background-color:#1167b1;
+}
+.currency-picker-container {
+  margin-bottom: 10px;
+}
+#default-currency-picker{
+  margin-top: 10px;
+}
+
+img {
+  width: 60px;
+  height: 40px;
+  vertical-align: top;
+}
+
+.cancel-button, #refresh {
+  float: right;
+  color: black;
+  background-color: transparent;
+  font-weight: bold;
+  min-height: 25px;
+  min-width: 20px;
+  border-radius: 10%;
+}
+
+.cancel-button:hover, #refresh:hover{
+  background-color: darkred;
+  color: white;
+}
