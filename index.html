@@ -22,12 +22,13 @@
         <main class="currency">
             
             <div class="default-box" id='defult-currency-box'>
-                <h5>Select your Base Currency</h5>
+                <h4>How much do you have saved up?</h4>
                 <img class="flag" id='default-flag'>
                 <div class="info">
-                    <p class="currency-input"><input type="number" value="0.00" id="amount"> </p>
+                    <p class="currency-input"><textarea type="number" value="0.00" id="amount"></textarea></p>
                 </div>
-                <br>    
+                <br>  
+                <h5>Select your Base Currency</h5>  
                 <select id="default-currency-picker">
                     <option value="USD">United States Dollar</option>
                     <option value="AED">UAE Dirham</option>
@@ -81,29 +82,18 @@
                     <option value="UAH">Ukrainian Hryvnia</option>
                     <option value="UYU">Uruguayan Peso</option>
                     <option value="ZAR">South African</option>
+                    <option disabled="true" value="-">-----Crypto-------</option>
+                    <option value="btc">Bitcoin</option>
+                    <option value="eth">Ethereum</option>
+                    <option value="xrp">Ripple</option>
+                    <option value="dot">Polkadot</option>
+                    <option value="bch">Bitcoin Cash</option>
+                    <option value="bnb">Binance Coin</option>
+                    <option value="link">Chainlink</option>
+                    <option value="cro">Crypto.com Coin</option>
+                    <option value="ltc">Litecoin</option>
                 </select>
                 <button id="refresh">Refresh Rates</button>
-            </div>
-
-            <div class="default-box" id='deafult-bitcoin-box'>
-                <h5>Select your Base Currency</h5>
-                <img src="https://image.shutterstock.com/image-vector/bitcoin-symbol-260nw-593588045.jpg">
-                <div class="info">
-                    <p class="currency-input"><input type="number" placehold="0.00" id="total"></p>
-                </div>
-                <br>
-                <select id="default-crypto-picker">
-                    <option value="bitcoin">Bitcoin</option>
-                    <option value="ethereum">Ethereum</option>
-                    <option value="tether">Tether</option>
-                    <option value="ripple">XRP</option>
-                    <option value="polkadot">Polkadot</option>
-                    <option value="bitcoin-cash">Bitcoin Cash</option>
-                    <option value="binancecoin">Binance Coin</option>
-                    <option value="chainlink">Chainlink</option>
-                    <option value="crypto-com-chain">Crypto.com Coin</option>
-                    <option value="litecoin">Litecoin</option>
-                </select>
             </div>
 
             <div class="currency-picker-container">
@@ -161,19 +151,16 @@
                     <option value="UAH">Ukrainian Hryvnia</option>
                     <option value="UYU">Uruguayan Peso</option>
                     <option value="ZAR">South African Rand</option>
-                </select>
-        
-                <select id="crypto">
-                    <option value="bitcoin" id="btc">Bitcoin</option>
-                    <option value="ethereum" id="eth">Ethereum</option>
-                    <option value="tether" id="usdt">Tether</option>
-                    <option value="ripple" id="xrp">XRP</option>
-                    <option value="polkadot" id="dot">Polkadot</option>
-                    <option value="bitcoin-cash" id="bch">Bitcoin Cash</option>
-                    <option value="binancecoin" id="bnb">Binance Coin</option>
-                    <option value="chainlink" id="link">Chainlink</option>
-                    <option value="crypto-com-chain" id="cro">Crypto.com Coin</option>
-                    <option value="litecoin" id="ltc">Litecoin</option>
+                    <option disabled="true" value="-">-----Crypto-------</option>
+                    <option value="btc" id="bitcoin">Bitcoin</option>
+                    <option value="eth" id="ethereum">Ethereum</option>
+                    <option value="xrp" id="ripple">Ripple</option>
+                    <option value="dot" id="polkadot">Polkadot</option>
+                    <option value="bch" id="bitcoin-cash">Bitcoin Cash</option>
+                    <option value="bnb" id="binancecoin">Binance Coin</option>
+                    <option value="link" id="chainlink">Chainlink</option>
+                    <option value="cro" id="crypto-com-chain">Crypto.com Coin</option>
+                    <option value="ltc" id="litecoin">Litecoin</option>
                 </select>
             </div>
         </main>

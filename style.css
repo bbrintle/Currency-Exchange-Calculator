@@ -20,6 +20,43 @@ body {
 h1 {
   font-size: 30pt; 
 }
+h4{
+  display: flex;
+  justify-content: center;
+}
+#amount{
+  padding-top: 15px;
+  min-width: 300px;
+  height: 75px;
+  display:flex; 
+  align-items: center; 
+  justify-content: center;
+  border-radius: 10px; 
+  overflow-y: auto;
+  margin: 0;
+  flex-direction : column; 
+  text-align: justify;
+  text-align-last: center;
+  background-color: white;  
+  word-wrap: break-word;
+  font-size: 30px;
+  resize: none;
+}
+.textarea-exchange{
+  padding-top: 15px;
+  min-width: 300px;
+  height: 75px;
+  border-radius: 10px; 
+  overflow-y: auto;
+  margin: 0;
+  flex-direction : column; 
+  text-align: justify;
+  text-align-last: center;
+  background-color: white;  
+  word-wrap: break-word;
+  font-size: 30px;
+  resize: none;
+}
 #total-amount{
   background-color: #333333;
   text-align: center;
@@ -46,8 +83,8 @@ h1 {
 }
 .flag {
   width: 60px;
-  height: 40px;
-  vertical-align: top;
+  height: 60px;
+  /*vertical-align: top;*/
 }
 .info {
   display: inline-block;
@@ -68,7 +105,7 @@ h1 {
 .currency-picker-container {
   margin-bottom: 10px;
 }
-#default-currency-picker{
+#default-currency-picker, #default-crypto-picker{
   margin-top: 10px;
 }
 
@@ -81,7 +118,7 @@ img {
 .cancel-button, #refresh {
   float: right;
   color: black;
-  background-color: transparent;
+  background-color: white;
   font-weight: bold;
   min-height: 25px;
   min-width: 20px;

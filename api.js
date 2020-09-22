@@ -104,10 +104,29 @@ function chooseCorrectFlag(countryID){
             return "https://www.countryflags.io/uy/flat/64.png";
         case 'ZAR':
             return "https://www.countryflags.io/za/flat/64.png";
+        case 'btc':
+            return "./crypto-logos/" + countryID + ".png";
+        case 'eth':
+            return "./crypto-logos/" + countryID + ".png";
+        case 'xrp':
+            return "./crypto-logos/" + countryID + ".png";
+        case 'dot':
+            return "./crypto-logos/" + countryID + ".png";
+        case 'bch':
+            return "./crypto-logos/" + countryID + ".png";
+        case 'bnb':
+            return "./crypto-logos/" + countryID + ".png";
+        case 'link':
+            return "./crypto-logos/" + countryID + ".png";
+        case 'cro':
+            return "./crypto-logos/" + countryID + ".png";
+        case 'ltc':
+            return "./crypto-logos/" + countryID + ".png";
     };
 };
 
 function exchangeAPICollector(API, currencyID){
+
     switch(currencyID){
         case 'USD':
             return API.conversion_rates.USD;
@@ -215,3 +234,34 @@ function exchangeAPICollector(API, currencyID){
             return API.conversion_rates.ZAR;
     };
 };
+
+function getCryptoFullName(ID){
+    switch(ID){
+        case "btc":
+            return "bitcoin"
+        case "eth":
+            return "ethereum"
+        case "xrp":
+            return "ripple"
+        case "btc":
+            return "Bitcoin"
+        case "dot":
+            return "polkadot"
+        case "bch":
+            return "bitcoin-cash"
+        case "bnb":
+            return "binancecoin"
+        case "link":
+            return "chainlink"
+        case "cro":
+            return "crypto-com-chain"
+        case "ltc":
+            return "litecoin"
+    }
+}
+
+function exchangeCryptoAPICollector(API, currencyID, convertID){
+    var cryptoCurrencyFullName = getCryptoFullName(convertID);
+    var cryptoExchage = API[cryptoCurrencyFullName][currencyID.toLowerCase()];
+    return cryptoExchage;
+}
