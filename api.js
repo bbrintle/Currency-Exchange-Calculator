@@ -1,5 +1,4 @@
 function chooseCorrectFlag(countryID){
-
     switch(countryID){
         case 'USD':
             return "https://www.countryflags.io/us/flat/64.png";
