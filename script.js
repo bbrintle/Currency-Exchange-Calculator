@@ -83,6 +83,7 @@ var refreshBtn = document.getElementById("refresh");
 var mainDisplayDiv = document.querySelector(".currency");
 var addCurrencyBtn = document.getElementById("add-currency-btn");
 var bitcoinTotal = document.getElementById("total");
+var currencySymbolElement = document.getElementById("put-symbol-here");
 
 //Function that will change all of the prices based on exchange rate in each of the currency boxes
 function updateExchangePrice(API){
@@ -128,6 +129,7 @@ function updateExchangePrice(API){
             selectedDropdownCurrency === "link" ||
             selectedDropdownCurrency === "cro" ||
             selectedDropdownCurrency === "ltc"){
+
                 //executes when Default is Crypto, but convert box is not crypto
                 singlePullCryptoAPI(usedCurrencyArray[i], getSelectedCurrencyFromDropdown(selectMainCurrencyElement).value);
 
@@ -179,7 +181,13 @@ function getSelectedCurrencyFromDropdown(selectEle) {
 function setFlag(){
     var currencyID = getSelectedCurrencyFromDropdown(selectMainCurrencyElement).value;
     defaultFlag.setAttribute('src', chooseCorrectFlag(currencyID));
+    setDefaultSymbol(currencyID);
 };
+
+function setDefaultSymbol(currencyID){
+    var currencySymbol = chooseCurrencySymbol(currencyID);
+    currencySymbolElement.innerHTML = currencySymbol;
+}
 
 //Function that pulls the API for the provided currencyID
 function pullAPI(currencyID){
@@ -259,6 +267,10 @@ addCurrencyBtn.addEventListener('click', function(){
         var newFlagImg = document.createElement('img');
         newFlagImg.setAttribute("src", chooseCorrectFlag(selectedCurrency))
         newFlagImg.setAttribute('class', "flag");
+        //Create Currency Icon
+        var newCurrencyIcon = document.createElement("span");
+        newCurrencyIcon.setAttribute("id", selectedCurrency + "-span");
+        newCurrencyIcon.innerHTML = chooseCurrencySymbol(selectedCurrency);
         //User Input Creation
         var newCurrencyInput = document.createElement("textarea");
         newCurrencyInput.setAttribute('type', "number");
@@ -273,6 +285,7 @@ addCurrencyBtn.addEventListener('click', function(){
         var newCurrencyContainer = document.createElement("div");
         newCurrencyContainer.setAttribute("class", "currency-box");
         newCurrencyContainer.appendChild(newFlagImg);
+        newCurrencyContainer.appendChild(newCurrencyIcon);
         newCurrencyContainer.appendChild(newCurrencyInput);
         newCurrencyContainer.appendChild(cancelBtn);
         newCurrencyContainer.appendChild(newCurrencyName);
