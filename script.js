@@ -217,7 +217,7 @@ function singlePullAPICrypto(exchangeID, base){
             cryptoObject[exchangeID] = cryptoExchangeRate;
             currentExchangeRate = cryptoObject[exchangeID];   
             exchangeRate = inputElement.value / currentExchangeRate;
-            currencyElement.textContent = inputElement.value + " " + exchangeID.toUpperCase() + " equals " + exchangeRate.toFixed(2) + " " + selectMainCurrencyElement.value.toUpperCase();
+            currencyElement.textContent = inputElement.value + " " + base.toUpperCase() + " equals " + exchangeRate.toFixed(2) + " " + selectMainCurrencyElement.value.toUpperCase();
             combinedAmount = combinedAmount + exchangeRate;
             totalAmountNeeded = amountInput.value - combinedAmount;
             updateSavingsDisplay(totalAmountNeeded);
@@ -253,7 +253,6 @@ function singlePullCryptoAPI(exchangeID, base){
                 var currencyElement = document.getElementById(exchangeID + "-p");
                 currentExchangeRate = cryptoExchangeRate;
                 exchangeRate = inputElement.value * currentExchangeRate;
-                console.log(exchangeRate)
                 if(isNaN(exchangeRate)){
                     exchangeRate = 0;
                     currencyElement.textContent = "Sorry, this conversion rate does not exist currently."
