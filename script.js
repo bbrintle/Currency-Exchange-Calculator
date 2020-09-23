@@ -113,7 +113,6 @@ function updateExchangePrice(API){
                 //Crypto Updates
                 singlePullCryptoAPI(usedCurrencyArray[i], selectedBaseOption);
             }else{
-                console.log("test")
                 singlePullAPICrypto(selectedBaseOption, usedCurrencyArray[i]);
             }
         }else{
@@ -253,7 +252,6 @@ function singlePullCryptoAPI(exchangeID, base){
                 var inputElement = document.getElementById(exchangeID + "-input");
                 var currencyElement = document.getElementById(exchangeID + "-p");
                 currentExchangeRate = cryptoExchangeRate;
-                console.log("test1")
                 exchangeRate = inputElement.value / currentExchangeRate;
                 if(isNaN(exchangeRate)){
                     exchangeRate = 0;
