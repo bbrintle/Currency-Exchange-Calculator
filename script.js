@@ -285,28 +285,27 @@ addCurrencyBtn.addEventListener('click', function(){
         var newFlagImg = document.createElement('img');
         newFlagImg.setAttribute("src", chooseCorrectFlag(selectedCurrency))
         newFlagImg.setAttribute('class', "flag");
-        //Create Currency Icon
-        var newCurrencyIcon = document.createElement("span");
-        newCurrencyIcon.setAttribute("id", selectedCurrency + "-span");
-        newCurrencyIcon.innerHTML = chooseCurrencySymbol(selectedCurrency);
         //User Input Creation
         var newCurrencyInput = document.createElement("textarea");
         newCurrencyInput.setAttribute('type', "number");
         newCurrencyInput.setAttribute('id', selectedCurrency + "-input");
         newCurrencyInput.setAttribute("placeholder", '0.00');
         newCurrencyInput.setAttribute('class', 'textarea-exchange');
-        //Currency Name Lable Creation
+        //Currency ID Label Creation
+        var newCurrencyIDName = document.createElement("p");
+        newCurrencyIDName.setAttribute('id', selectedCurrency + "-p");
+        newCurrencyIDName.textContent = selectedCurrency.toUpperCase();
+        //Currency Name Label Creation
         var newCurrencyName = document.createElement("p");
-        newCurrencyName.setAttribute('id', selectedCurrency + "-p");
-        newCurrencyName.textContent = selectedCurrency.toUpperCase();
+        newCurrencyName.innerHTML = getSelectedCurrencyFromDropdown(selectCurrencyElement).textContent + " " + chooseCurrencySymbol(selectedCurrency)
         //Create the Div that all the above info will be shoved inside of
         var newCurrencyContainer = document.createElement("div");
         newCurrencyContainer.setAttribute("class", "currency-box");
+        newCurrencyContainer.appendChild(newCurrencyName);
         newCurrencyContainer.appendChild(newFlagImg);
-        newCurrencyContainer.appendChild(newCurrencyIcon);
         newCurrencyContainer.appendChild(newCurrencyInput);
         newCurrencyContainer.appendChild(cancelBtn);
-        newCurrencyContainer.appendChild(newCurrencyName);
+        newCurrencyContainer.appendChild(newCurrencyIDName);
         //Append the Div above to mainDisplayDiv
         mainDisplayDiv.appendChild(newCurrencyContainer);
         //Add the ID to the array so that it cannot be used again

@@ -74,6 +74,7 @@ h4{
   padding: 15px;
 }
 .default-box, .currency-box {
+  position: relative;
   background-color: #c0c0c0;
   border-radius: 5px;
   list-style: none;
@@ -84,7 +85,6 @@ h4{
 .flag {
   width: 60px;
   height: 60px;
-  /*vertical-align: top;*/
 }
 .info {
   display: inline-block;
@@ -116,7 +116,12 @@ img {
 }
 
 .cancel-button, #refresh {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  /*
   float: right;
+  */
   color: black;
   background-color: white;
   font-weight: bold;
@@ -128,4 +133,9 @@ img {
 .cancel-button:hover, #refresh:hover{
   background-color: darkred;
   color: white;
+}
+
+.currency-box p{
+  display: flex;
+  justify-content: center;
 }
