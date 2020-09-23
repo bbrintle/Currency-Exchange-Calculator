@@ -14,6 +14,7 @@ The Currency Converter will allow the user to enter how much they have saved in 
 
 ## Visuals
 <a href="https://bbrintle.github.io/project1/">Visit Site</a>
+<br>
 <img src="./readme-images/XChangeUI.PNG">
 
 
