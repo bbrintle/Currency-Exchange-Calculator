@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #c0c0c0;
+  color: #fff;
+}
+.container {
+  width: 500px;
+  margin: 20px auto;
+}
+.header {
+  background-color: #6699CC;
+  text-align: center;
+  padding: 25px;
+}
+h4{
+  display: flex;
+  justify-content: center;
+}
+#amount{
+  padding-top: 15px;
+  width: 295px;
+  height: 75px;
+  display:flex; 
+  align-items: center; 
+  justify-content: center;
+  border-radius: 10px; 
+  overflow-y: auto;
+  margin: 0;
+  flex-direction : column; 
+  text-align: justify;
+  text-align-last: center;
+  background-color: white;  
+  word-wrap: break-word;
+  font-size: 30px;
+  resize: none;
+}
+.textarea-exchange{
+  padding-top: 15px;
+  width: 295px;
+  height: 75px;
+  border-radius: 10px; 
+  overflow-y: auto;
+  margin: 0;
+  flex-direction : column; 
+  text-align: justify;
+  text-align-last: center;
+  background-color: white;  
+  word-wrap: break-word;
+  font-size: 30px;
+  resize: none;
+}
+#total-amount{
+  background-color: #333333;
+  text-align: center;
+  font-size: 25pt;
+  padding: 15px;
+}
+.date {
+  background-color: #333333;
+  text-align: right;
+  font-size: 15pt;
+  padding: 15px;
+}
+.currency {
+  background-color: #333333;
+  padding: 15px;
+}
+.default-box, .currency-box {
+  position: relative;
+  background-color: #c0c0c0;
+  border-radius: 5px;
+  list-style: none;
+  padding: 20px;
+  margin-bottom: 10px;
+  color: black;
+}
+.flag {
+  width: 60px;
+  height: 60px;
+}
+.info {
+  display: inline-block;
+} 
+#add-currency-btn {
+  background-color: #6699CC;
+  color: white;
+  padding: 20px;
+  font-size: 20pt;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  width: 500px;
+}
+#add-currency-btn:hover {
+ background-color:#1167b1;
+}
+.currency-picker-container {
+  margin-bottom: 10px;
+}
+#default-currency-picker, #default-crypto-picker{
+  margin-top: 10px;
+}
+img {
+  width: 60px;
+  height: 40px;
+  vertical-align: top;
+}
+#refresh {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+#refresh:hover{
+  background-color: #6699CC;
+  color: White;
+}
+.cancel-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px
+}
+.cancel-button:hover{
+  background-color: darkred;
+  color: white;
+}
+.currency-box p{
+  display: flex;
+  justify-content: center;
+}
