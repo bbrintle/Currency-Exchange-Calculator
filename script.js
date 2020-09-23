@@ -113,6 +113,7 @@ function updateExchangePrice(API){
                 //Crypto Updates
                 singlePullCryptoAPI(usedCurrencyArray[i], selectedBaseOption);
             }else{
+                console.log("test")
                 singlePullAPICrypto(selectedBaseOption, usedCurrencyArray[i]);
             }
         }else{
@@ -216,7 +217,7 @@ function singlePullAPICrypto(exchangeID, base){
             var currencyElement = document.getElementById(base + "-p");
             cryptoObject[exchangeID] = cryptoExchangeRate;
             currentExchangeRate = cryptoObject[exchangeID];   
-            exchangeRate = inputElement.value / currentExchangeRate;
+            exchangeRate = inputElement.value * currentExchangeRate;
             currencyElement.textContent = inputElement.value + " " + base.toUpperCase() + " equals " + exchangeRate.toFixed(2) + " " + selectMainCurrencyElement.value.toUpperCase();
             combinedAmount = combinedAmount + exchangeRate;
             totalAmountNeeded = amountInput.value - combinedAmount;
