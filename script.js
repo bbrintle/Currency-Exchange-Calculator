@@ -87,7 +87,7 @@ var currencySymbolElement = document.getElementById("put-symbol-here");
 
 //Function that will change all of the prices based on exchange rate in each of the currency boxes
 function updateExchangePrice(API){
-    
+    var selectedBaseOption = getSelectedCurrencyFromDropdown(selectMainCurrencyElement).value;
     for (var i = 1; i < usedCurrencyArray.length; i++){
 
         if(usedCurrencyArray[i] === "btc" ||
@@ -100,20 +100,23 @@ function updateExchangePrice(API){
         usedCurrencyArray[i] === "link" ||
         usedCurrencyArray[i] === "cro" ||
         usedCurrencyArray[i] === "ltc"){
-            if(getSelectedCurrencyFromDropdown(selectMainCurrencyElement).value !== "btc" ||
-            getSelectedCurrencyFromDropdown(selectMainCurrencyElement).value !== "eth" ||
-            getSelectedCurrencyFromDropdown(selectMainCurrencyElement).value !== "usdt" ||
-            getSelectedCurrencyFromDropdown(selectMainCurrencyElement).value !== "xrp" ||
-            getSelectedCurrencyFromDropdown(selectMainCurrencyElement).value !== "dot" ||
-            getSelectedCurrencyFromDropdown(selectMainCurrencyElement).value !== "bch" ||
-            getSelectedCurrencyFromDropdown(selectMainCurrencyElement).value !== "bnb" ||
-            getSelectedCurrencyFromDropdown(selectMainCurrencyElement).value !== "link" ||
-            getSelectedCurrencyFromDropdown(selectMainCurrencyElement).value !== "cro" ||
-            getSelectedCurrencyFromDropdown(selectMainCurrencyElement).value !== "ltc"){
-                singlePullCryptoAPI(getSelectedCurrencyFromDropdown(selectMainCurrencyElement).value, usedCurrencyArray[i]);
-            }else{
+            if(selectedBaseOption === "btc" ||
+            selectedBaseOption === "eth" ||
+            selectedBaseOption === "usdt" ||
+            selectedBaseOption === "xrp" ||
+            selectedBaseOption === "dot" ||
+            selectedBaseOption === "bch" ||
+            selectedBaseOption === "bnb" ||
+            selectedBaseOption === "link" ||
+            selectedBaseOption === "cro" ||
+            selectedBaseOption === "ltc"){
+
                 //Crypto Updates
-                singlePullCryptoAPI(usedCurrencyArray[i], getSelectedCurrencyFromDropdown(selectMainCurrencyElement).textContent);
+                singlePullCryptoAPI(usedCurrencyArray[i], selectedBaseOption);
+
+                
+            }else{
+                singlePullAPICrypto(selectedBaseOption, usedCurrencyArray[i]);
             }
             
 
@@ -129,9 +132,8 @@ function updateExchangePrice(API){
             selectedDropdownCurrency === "link" ||
             selectedDropdownCurrency === "cro" ||
             selectedDropdownCurrency === "ltc"){
-
                 //executes when Default is Crypto, but convert box is not crypto
-                singlePullCryptoAPI(usedCurrencyArray[i], getSelectedCurrencyFromDropdown(selectMainCurrencyElement).value);
+                singlePullCryptoAPI(usedCurrencyArray[i], selectedDropdownCurrency);
 
             }else{
                 //Physcial Currency Updates
@@ -197,7 +199,7 @@ function pullAPI(currencyID){
         method: "GET"
         }).then(function(response) {
             updateExchangePrice(response);
-        });
+    });
 };
 
 function cryptoConversion(exchangeID){
@@ -208,8 +210,29 @@ function cryptoConversion(exchangeID){
         method: "GET"
         }).then(function(response) {
             updateExchangePrice(response);
-    })
+    });
 };
+
+function singlePullAPICrypto(exchangeID, base){
+    var newBase = getCryptoFullName(base);
+    $.ajax({
+        url: `https://api.coingecko.com/api/v3/simple/price?ids=${newBase}&vs_currencies=${exchangeID}`,
+        method: "GET"
+        }).then(function(response) {
+            var cryptoExchangeRate = exchangeCryptoAPICollector(response, exchangeID, base);
+            var inputElement = document.getElementById(base + "-input");
+            var currencyElement = document.getElementById(base + "-p");
+            cryptoObject[exchangeID] = cryptoExchangeRate;
+            currentExchangeRate = cryptoObject[exchangeID];   
+            exchangeRate = inputElement.value / currentExchangeRate;
+            currencyElement.textContent = inputElement.value + " " + exchangeID.toUpperCase() + " equals " + exchangeRate.toFixed(2) + " " + selectMainCurrencyElement.value.toUpperCase();
+            
+            combinedAmount = combinedAmount + exchangeRate;
+            totalAmountNeeded = amountInput.value - combinedAmount;
+            updateSavingsDisplay(totalAmountNeeded);
+    });
+};
+
 
 function singlePullCryptoAPI(exchangeID, base){
     var newBase = getCryptoFullName(base);
@@ -218,7 +241,7 @@ function singlePullCryptoAPI(exchangeID, base){
         url: `https://api.coingecko.com/api/v3/simple/price?ids=${newBase}&vs_currencies=${exchange}`,
         method: "GET"
         }).then(function(response) {          
-            var cryptoExchangeRate = exchangeCryptoAPICollector(response, exchangeID, base);
+            
 
             if(exchangeID === "btc" ||
             exchangeID === "eth" ||
@@ -229,6 +252,7 @@ function singlePullCryptoAPI(exchangeID, base){
             exchangeID === "link" ||
             exchangeID === "cro" ||
             exchangeID === "ltc"){
+                var cryptoExchangeRate = exchangeCryptoAPICollector(response, exchangeID, base);
                 var inputElement = document.getElementById(exchangeID + "-input");
                 var currencyElement = document.getElementById(exchangeID + "-p");
                 cryptoObject[exchangeID] = cryptoExchangeRate;
@@ -236,9 +260,10 @@ function singlePullCryptoAPI(exchangeID, base){
                 exchangeRate = inputElement.value / currentExchangeRate;
                 currencyElement.textContent = inputElement.value + " " + exchangeID.toUpperCase() + " equals " + exchangeRate.toFixed(2) + " " + selectMainCurrencyElement.value.toUpperCase();
             }else{
-                var inputElement = document.getElementById(base + "-input");
-                var currencyElement = document.getElementById(base + "-p");
-                currentExchangeRate = cryptoExchangeRate;   
+                var cryptoExchangeRate = exchangeCryptoAPICollector(response, exchangeID, base);
+                var inputElement = document.getElementById(exchangeID + "-input");
+                var currencyElement = document.getElementById(exchangeID + "-p");
+                currentExchangeRate = cryptoExchangeRate;
                 exchangeRate = inputElement.value * currentExchangeRate;
                 currencyElement.textContent = inputElement.value + " " + base.toUpperCase() + " equals " + exchangeRate.toFixed(2) + " " + selectMainCurrencyElement.value.toUpperCase();
             }
@@ -275,7 +300,7 @@ addCurrencyBtn.addEventListener('click', function(){
         var newCurrencyInput = document.createElement("textarea");
         newCurrencyInput.setAttribute('type', "number");
         newCurrencyInput.setAttribute('id', selectedCurrency + "-input");
-        newCurrencyInput.setAttribute('value', '0.00');
+        newCurrencyInput.setAttribute("placeholder", '0.00');
         newCurrencyInput.setAttribute('class', 'textarea-exchange');
         //Currency Name Lable Creation
         var newCurrencyName = document.createElement("p");
@@ -329,7 +354,7 @@ selectMainCurrencyElement.addEventListener("change", function(){
     getSelectedCurrencyFromDropdown(selectMainCurrencyElement).value === "link" ||
     getSelectedCurrencyFromDropdown(selectMainCurrencyElement).value === "cro" ||
     getSelectedCurrencyFromDropdown(selectMainCurrencyElement).value === "ltc"){
-        var exchangeID = getSelectedCurrencyFromDropdown(selectCurrencyElement).value;
+        var exchangeID = getSelectedCurrencyFromDropdown(selectMainCurrencyElement).value;
         cryptoObject = {
             btc: 0,
             eth: 0,
