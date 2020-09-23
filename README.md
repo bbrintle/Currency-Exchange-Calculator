@@ -19,9 +19,13 @@ The Currency Converter will allow the user to enter how much they have saved in 
 
 ## API/Framework Used
 <a href="https://www.coingecko.com/en/api#explore-api">CoinGecko (Crypto API)</a>
+<br>
 <a href="https://www.exchangerate-api.com/">ExchangeRate-API</a>
+<br>
 <a href="https://www.countryflags.io/">Country Flags API</a>
+<br>
 <a href="https://bulma.io/">Bulma (CSS Framework)</a>
+<br>
 
 ## Road Map
 Future deployments and add-ons are to allow for hotel booking, airline booking, car rentals, along with the ability to convert currency ahead of time and save in a digital debit card for security purposes. 
