@@ -17,9 +17,6 @@ body {
   text-align: center;
   padding: 25px;
 }
-h1 {
-  font-size: 30pt; 
-}
 h4{
   display: flex;
   justify-content: center;
@@ -108,33 +105,30 @@ h4{
 #default-currency-picker, #default-crypto-picker{
   margin-top: 10px;
 }
-
 img {
   width: 60px;
   height: 40px;
   vertical-align: top;
 }
-
-.cancel-button, #refresh {
+#refresh {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+#refresh:hover{
+  background-color: #6699CC;
+  color: White;
+}
+.cancel-button {
   position: absolute;
   top: 5px;
   right: 5px;
-  /*
-  float: right;
-  */
-  color: black;
-  background-color: white;
-  font-weight: bold;
-  min-height: 25px;
-  min-width: 20px;
-  border-radius: 10%;
+  width: 20px
 }
-
-.cancel-button:hover, #refresh:hover{
+.cancel-button:hover{
   background-color: darkred;
   color: white;
 }
-
 .currency-box p{
   display: flex;
   justify-content: center;

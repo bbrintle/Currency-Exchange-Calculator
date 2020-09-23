@@ -276,7 +276,7 @@ addCurrencyBtn.addEventListener('click', function(){
         //Cancel Button Creation
         var cancelBtn = document.createElement("button");
         cancelBtn.textContent = "X";
-        cancelBtn.setAttribute("class", "cancel-button");
+        cancelBtn.setAttribute("class", "button is-info cancel-button");
         cancelBtn.addEventListener('click', function(){
             newCurrencyContainer.remove();
             usedCurrencyArray.splice(usedCurrencyArray.indexOf(selectedCurrency), 1);
