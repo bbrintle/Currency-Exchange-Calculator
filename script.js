@@ -110,19 +110,13 @@ function updateExchangePrice(API){
             selectedBaseOption === "link" ||
             selectedBaseOption === "cro" ||
             selectedBaseOption === "ltc"){
-
                 //Crypto Updates
                 singlePullCryptoAPI(usedCurrencyArray[i], selectedBaseOption);
-
-                
             }else{
                 singlePullAPICrypto(selectedBaseOption, usedCurrencyArray[i]);
             }
-            
-
         }else{
             var selectedDropdownCurrency = getSelectedCurrencyFromDropdown(selectMainCurrencyElement).value;
-
             if(selectedDropdownCurrency === "btc" ||
             selectedDropdownCurrency === "eth" ||
             selectedDropdownCurrency === "xrp" ||
@@ -134,13 +128,11 @@ function updateExchangePrice(API){
             selectedDropdownCurrency === "ltc"){
                 //executes when Default is Crypto, but convert box is not crypto
                 singlePullCryptoAPI(usedCurrencyArray[i], selectedDropdownCurrency);
-
             }else{
                 //Physcial Currency Updates
                 var inputElement = document.getElementById(usedCurrencyArray[i] + "-input");
                 var currencyElement = document.getElementById(usedCurrencyArray[i] + "-p");
                 var currentExchangeRate = exchangeAPICollector(API, usedCurrencyArray[i]);
-                
                 //Do the math for conversion rates
                 exchangeRate = inputElement.value / currentExchangeRate;
                 currencyElement.textContent = inputElement.value + " " + usedCurrencyArray[i] + " equals " + exchangeRate.toFixed(2) + " " + selectMainCurrencyElement.value;
@@ -226,13 +218,11 @@ function singlePullAPICrypto(exchangeID, base){
             currentExchangeRate = cryptoObject[exchangeID];   
             exchangeRate = inputElement.value / currentExchangeRate;
             currencyElement.textContent = inputElement.value + " " + exchangeID.toUpperCase() + " equals " + exchangeRate.toFixed(2) + " " + selectMainCurrencyElement.value.toUpperCase();
-            
             combinedAmount = combinedAmount + exchangeRate;
             totalAmountNeeded = amountInput.value - combinedAmount;
             updateSavingsDisplay(totalAmountNeeded);
     });
 };
-
 
 function singlePullCryptoAPI(exchangeID, base){
     var newBase = getCryptoFullName(base);
@@ -241,8 +231,6 @@ function singlePullCryptoAPI(exchangeID, base){
         url: `https://api.coingecko.com/api/v3/simple/price?ids=${newBase}&vs_currencies=${exchange}`,
         method: "GET"
         }).then(function(response) {          
-            
-
             if(exchangeID === "btc" ||
             exchangeID === "eth" ||
             exchangeID === "xrp" ||
@@ -265,9 +253,14 @@ function singlePullCryptoAPI(exchangeID, base){
                 var currencyElement = document.getElementById(exchangeID + "-p");
                 currentExchangeRate = cryptoExchangeRate;
                 exchangeRate = inputElement.value * currentExchangeRate;
-                currencyElement.textContent = inputElement.value + " " + base.toUpperCase() + " equals " + exchangeRate.toFixed(2) + " " + selectMainCurrencyElement.value.toUpperCase();
+                console.log(exchangeRate)
+                if(isNaN(exchangeRate)){
+                    exchangeRate = 0;
+                    currencyElement.textContent = "Sorry, this conversion rate does not exist currently."
+                }else{
+                    currencyElement.textContent = inputElement.value + " " + base.toUpperCase() + " equals " + exchangeRate.toFixed(2) + " " + selectMainCurrencyElement.value.toUpperCase();
+                }
             }
-            
             combinedAmount = combinedAmount + exchangeRate;
             totalAmountNeeded = amountInput.value - combinedAmount;
             updateSavingsDisplay(totalAmountNeeded);
@@ -374,7 +367,6 @@ selectMainCurrencyElement.addEventListener("change", function(){
         setFlag();
         pullAPI(getSelectedCurrencyFromDropdown(selectMainCurrencyElement).value);  
     }
-    
     usedCurrencyArray.shift();
     usedCurrencyArray.unshift(getSelectedCurrencyFromDropdown(selectMainCurrencyElement).value);
 });
