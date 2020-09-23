@@ -253,12 +253,13 @@ function singlePullCryptoAPI(exchangeID, base){
                 var inputElement = document.getElementById(exchangeID + "-input");
                 var currencyElement = document.getElementById(exchangeID + "-p");
                 currentExchangeRate = cryptoExchangeRate;
-                exchangeRate = inputElement.value * currentExchangeRate;
+                console.log("test1")
+                exchangeRate = inputElement.value / currentExchangeRate;
                 if(isNaN(exchangeRate)){
                     exchangeRate = 0;
                     currencyElement.textContent = "Sorry, this conversion rate does not exist currently."
                 }else{
-                    currencyElement.textContent = inputElement.value + " " + base.toUpperCase() + " equals " + exchangeRate.toFixed(2) + " " + selectMainCurrencyElement.value.toUpperCase();
+                    currencyElement.textContent = inputElement.value + " " + exchangeID.toUpperCase() + " equals " + exchangeRate.toFixed(2) + " " + selectMainCurrencyElement.value.toUpperCase();
                 }
             }
             combinedAmount = combinedAmount + exchangeRate;
